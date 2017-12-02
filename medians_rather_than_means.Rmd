@@ -16,9 +16,9 @@ library(tidyverse)
 library(gridExtra)
 ```
 
-Point estimates from simulated QI distributions are measures of central tendency of these distributions. To find point estimates from them, it is important to use the most appropriate measure of central tendency given these distributions' characteristics.
+Point estimates from simulated QI distributions are effectively measures of central tendency of these distributions. It is important to use the most appropriate measure of central tendency given each distribution's characteristics.
 
-Many QI distributions are by construction asymetric, being skewed and/or bounded (e.g. by 0 and 1 for predicted probabilities). As in any other context, when summarising the central tendency of such distributions the median is a more accurate measure of central tendency than the mean.
+Many QI distributions are by construction asymmetric, being skewed and/or bounded (e.g. by 0 and 1 for predicted probabilities). As in any other context, when summarising the central tendency of such distributions the median is a more accurate measure of central tendency than the mean.
 
 Choosing to use the mean rather than median to summarise a skewed simulated QI distribution produces biased point estimates compared to the equivalent maximum likelihood estimates. Rainey (work in progress, 4-5) shows the effect of taking simulation distribution averages for QIs from a probit regression. Figure 1 shows the distribution of simulated predicted probabilities from one of the simulated probit regressions. This is a highly skewed distribution for which the mean would be an inappropriate measure of central tendency, especially compared to the median.
 
@@ -166,11 +166,11 @@ ggplot(tau_df, aes(x = tau_hat_mle, tau_hat_median)) +
        y = "Simulation Estimate (median)")
 ```
 
-The QI in the latter example is the first difference of the predicted probabilities. Here we can begin to see some hint at what Rainey calls "transformation bias" (i.e. there is a slight difference in the simulation median and MLE approaches). First differences are produced by taking the difference of two predicted probabilities, i.e. an extra transformation. As such the transformation bias grows. However, when we use the appropriate measure of the QI simulated distributions' central tendency--median--the bias is very small.
+The QI in the latter example is the first difference of the predicted probabilities. Here we can begin to see some hint at what Rainey calls "transformation bias" (i.e. there is a slight difference in the simulation median and MLE approaches). First differences are produced by taking the difference of two predicted probabilities, i.e. an extra transformation. As such the transformation bias grows. However, when we use the appropriate measure of the QI simulated distributions' central tendency--median--the bias is very small and likely not substantively meaningful.
 
 # Key take away
 
-Each simulated quantity of interest's distribution needs to be summarised using the appropriate summary statistics for the shape of its distribution. If inappropriate statistics are used, we can expect biased summaries.
+Each simulated quantity of interest's distribution needs to be summarised using the appropriate summary statistics for the shape of its distribution. If inappropriate statistics are used, we can expect unnecessarily biased summaries.
 
-Many quantity of interests' distributions are far from normal. Many are bounded and exhibit bunching close to the bounds, as for predicted probabilities. In these cases medians can be useful rather than means. These types of distributions may even be poorly served not only in the summary of their central tendency but their range. Typically researchers use central simulation distribution intervals (e.g. the 95% central interval) to find uncertainty bounds. However, these can be biased in the same way as means are for skewed and bounded distributions. In these case, summary tools such as the highest probability density regions (for a summary see [Gandrud (2015, 6)](https://www.jstatsoft.org/article/view/v065i03)) can give a more accurate perspective on the shape of the simulated distribution and thus our uncertainty about our estimates.
+Many quantity of interests' distributions are far from normal. Many are bounded and exhibit bunching close to the bounds, as for predicted probabilities. In these cases medians can be useful rather than means. These types of distributions may even be poorly served not only in the summary of their central tendency but their range. Typically researchers use central simulation distribution intervals (e.g. the 95% central interval) to find uncertainty bounds. However, these can be biased in the same way as means are for skewed and bounded distributions. In these cases, summary tools such as the highest probability density regions (for a summary see [Gandrud (2015, 6)](https://www.jstatsoft.org/article/view/v065i03)) can give a more accurate perspective on the shape of the simulated distribution and thus our uncertainty about our estimates.
 
