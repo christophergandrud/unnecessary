@@ -13,3 +13,6 @@
 *.docx
 *-old/
 !.gitignore
+
+medians_rather_than_means_cache
+medians_rather_than_means_files
